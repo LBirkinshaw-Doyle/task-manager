@@ -1,0 +1,23 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+nav{
+    background-color: salmon;
+}
+.task{
+    display: none;
+}
+#tree-image{
+    display: block;
+    background-image: url("./media/icons/checklist.svg");
+    background-color: salmon;
+    min-width: 48px;
+    min-height: 48px;
+}
