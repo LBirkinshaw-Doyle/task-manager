@@ -7,17 +7,30 @@ header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    background-color: aqua;
 }
 nav{
-    background-color: salmon;
+    flex: 1 1 10vw;
+}
+#title-container{
+    flex: 3 3 70vw;
+    display: flex;
+    align-items: center;
+}
+#title-container>h1{
+    margin: 0;
 }
 .task{
     display: none;
 }
+nav>button{
+    background-color: salmon;
+    border-radius: 5px;
+}
 #tree-image{
     display: block;
     background-image: url("./media/icons/checklist.svg");
-    background-color: salmon;
     min-width: 48px;
     min-height: 48px;
 }

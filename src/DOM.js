@@ -7,9 +7,10 @@ export function createStatic () {
     const title = document.createElement('h1');
 
     title.textContent = 'Tsk Mng';
+    titleContainer.id = 'title-container';
 
     const navBar = document.createElement('nav');
-    const displaySelector = document.createElement('a');
+    const displaySelector = document.createElement('button');
     const treeImage =document.createElement('span');
     const taskListHeader = document.createElement('h3');
     const taskList = document.createElement('ul');
@@ -20,7 +21,6 @@ export function createStatic () {
     taskListHeader.classList.add('task');
     taskList.classList.add('task');
     treeImage.id = 'tree-image';
-    displaySelector.href = "javascript:void(0)"
 
     displaySelector.appendChild(treeImage);
     navBar.append(displaySelector, taskListHeader, taskList);
