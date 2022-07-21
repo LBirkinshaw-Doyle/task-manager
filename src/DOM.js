@@ -12,21 +12,29 @@ export function createStatic () {
     const navBar = document.createElement('nav');
     const displaySelector = document.createElement('button');
     const treeImage =document.createElement('span');
+    const taskListContainer = document.createElement('div');
     const taskListHeader = document.createElement('h3');
     const taskList = document.createElement('ul');
 
+    taskListContainer.id = 'task-list-container';
+    taskListContainer.classList.add('task');
     taskListHeader.id = 'task-list-header';
     taskListHeader.textContent = 'Tasks:';
-    taskList.id = "task-list";
     taskListHeader.classList.add('task');
+    taskList.id = "task-list";
     taskList.classList.add('task');
+
+    taskListContainer.append(taskListHeader, taskList)
+
     treeImage.id = 'tree-image';
 
     displaySelector.appendChild(treeImage);
-    navBar.append(displaySelector, taskListHeader, taskList);
+    navBar.append(displaySelector);
     header.append(navBar);
 
     titleContainer.append(logoImage, title);
     header.append(titleContainer);
-    content.append(header);
+
+    content.append(header, taskListContainer);
+
 }
