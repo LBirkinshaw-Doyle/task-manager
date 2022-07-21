@@ -1,3 +1,5 @@
+import task from './task.js';
+
 export function createStatic () {
     const content = document.getElementById("content");
 
