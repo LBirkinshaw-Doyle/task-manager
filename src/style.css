@@ -17,6 +17,8 @@ nav{
     flex: 3 3 70vw;
     display: flex;
     align-items: center;
+    justify-content: right;
+    margin-right: 20px;
 }
 #title-container>h1{
     margin: 0;
