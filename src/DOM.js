@@ -13,7 +13,7 @@ export function createStatic () {
 
     const navBar = document.createElement('nav');
     const displaySelector = document.createElement('button');
-    const treeImage =document.createElement('span');
+    const treeImage = document.createElement('span');
     const taskListContainer = document.createElement('div');
     const taskListHeader = document.createElement('h3');
     const taskList = document.createElement('ul');
@@ -26,9 +26,14 @@ export function createStatic () {
     const addTaskButton = document.createElement('button');
     addTaskButton.id = 'add-task-button';
     addTaskButton.textContent = 'New Task';
+    addTaskButton.classList.add = 'add-button';
+    const addProjectButton = document.createElement('button');
+    addProjectButton.id = 'add-project-button';
+    addProjectButton.textContent = 'New Project';
+    addProjectButton.classList.add = 'add-button';
 
 
-    taskListContainer.append(addTaskButton, taskListHeader, taskList);
+    taskListContainer.append(addTaskButton, addProjectButton, taskListHeader, taskList);
 
     treeImage.id = 'tree-image';
 
@@ -50,9 +55,26 @@ export function createStatic () {
         }
     });
     addTaskButton.addEventListener('click', addNewTaskForm);
+    addProjectButton.addEventListener('click', addNewProjectForm);
 
 }
 
 function addNewTaskForm () {
+
+}
+
+function addNewProjectForm () {
     
+}
+
+function updateTaskList () {
+
+}
+
+function displayTask () {
+
+}
+
+function displayProject () {
+
 }
