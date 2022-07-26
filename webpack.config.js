@@ -16,6 +16,9 @@ module.exports = {
     devServer: {
         static: './dist',
     },
+    optimisation: {
+        runtimeChunk: 'single',
+    },
     module: {
         rules: [
             {

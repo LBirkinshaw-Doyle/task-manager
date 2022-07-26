@@ -39,4 +39,13 @@ export function createStatic () {
 
     content.append(header, taskListContainer);
 
+    displaySelector.addEventListener('click', () => {
+        if (taskListContainer.style.display === "block") {
+            taskListContainer.style.display = "none";
+        }
+        else {
+            taskListContainer.style.display = "block";
+        }
+    });
+
 }

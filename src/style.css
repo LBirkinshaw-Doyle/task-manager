@@ -23,7 +23,7 @@ nav{
 #title-container>h1{
     margin: 0;
 }
-.task{
+#task-list-container{
     display: none;
 }
 nav>button{
