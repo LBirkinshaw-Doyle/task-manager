@@ -41,6 +41,13 @@ const taskManager = function () {
     function allTasks () {
         return currentTasks;
     };
+    function allProjects () {
+        let projectList = [];
+        for (task in currentTasks) {
+            if (!projectList.includes(task.project)) projectList.push(task.project)
+        }
+        return projectList;
+    };
     function tasksOfProject (project) {
         let projectTasks = {};
         for (const task in currentTasks) {
@@ -75,6 +82,7 @@ const taskManager = function () {
 
     return {
         allTasks,
+        allProjects,
         tasksOfProject,
         addNewTask,
         removeTask,
