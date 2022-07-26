@@ -19,14 +19,16 @@ export function createStatic () {
     const taskList = document.createElement('ul');
 
     taskListContainer.id = 'task-list-container';
-    taskListContainer.classList.add('task');
     taskListHeader.id = 'task-list-header';
     taskListHeader.textContent = 'Tasks:';
-    taskListHeader.classList.add('task');
     taskList.id = "task-list";
-    taskList.classList.add('task');
 
-    taskListContainer.append(taskListHeader, taskList)
+    const addTaskButton = document.createElement('button');
+    addTaskButton.id = 'add-task-button';
+    addTaskButton.textContent = 'New Task';
+
+
+    taskListContainer.append(addTaskButton, taskListHeader, taskList);
 
     treeImage.id = 'tree-image';
 
@@ -47,5 +49,10 @@ export function createStatic () {
             taskListContainer.style.display = "block";
         }
     });
+    addTaskButton.addEventListener('click', addNewTaskForm);
 
+}
+
+function addNewTaskForm () {
+    
 }
