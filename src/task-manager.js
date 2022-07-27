@@ -36,8 +36,9 @@ const taskManager = function () {
         // We can use localStorage
         let storage = window['localStorage'];
         if (storage.length > 0) {
+            let keys = [];
             for (let i = 0; i < storage.length; i++){
-                currentTasks[i] = JSON.parse(storage.getItem(i));
+                currentTasks[storage.key(i)] = JSON.parse(storage.getItem(storage.key(i)));
             }
         }
     };
@@ -46,43 +47,43 @@ const taskManager = function () {
     };
     function allProjects () {
         let projectList = [];
-        for (task in currentTasks) {
+        for (const task in currentTasks.values()) {
             if (!projectList.includes(task.project)) projectList.push(task.project)
         }
         return projectList;
     };
     function tasksOfProject (project) {
         let projectTasks = {};
-        for (const task in currentTasks) {
+        for (const task in currentTasks.values()) {
             if (task.project === project) {
-                projectTasks[projectTasks.length] = task
+                projectTasks[getTaskIndex(task)] = task
             }
         }
         return projectTasks;
     };
     function addNewTask (title, description, dueDate, priority, complete, project) {
         const newTask = new Task(title, description, dueDate, priority, complete, project);
-        let newTaskIndex = Object.keys(currentTasks).length;
         // add task to currentTasks and storage if applicable
-        currentTasks[newTaskIndex] = newTask;
+        currentTasks[getTaskIndex(newTask)] = newTask;
         if (storageAvailable()) {
             let storage = window['localStorage'];
-            storage.setItem(newTaskIndex, JSON.stringify(newTask));
+            storage.setItem(getTaskIndex(newTask), JSON.stringify(newTask));
         }
     };
     function removeTask (taskToRemove) {
-        Object.values(currentTasks).forEach((value, key) => {
-            if (value === taskToRemove) {
-                if (storageAvailable()) {
-                    let storage = window['localStorage'];
-                    storage.removeItem(key);
-                }
-                delete currentTasks[key];
+        if (currentTasks[getTaskIndex(taskToRemove)]) {
+            if (storageAvailable()) {
+                let storage = window['localStorage'];
+                storage.removeItem(getTaskIndex(taskToRemove));
             }
-        })
+            delete currentTasks[getTaskIndex(taskToRemove)];
+        }
+        else {return 'No such task'}
+        
     };
     function updateTask (oldTask, newTask) {
-
+        removeTask(oldTask);
+        addNewTask(newTask.title, newTask.description, newTask.dueDate, newTask.priority, newTask.complete, newTask.project);
     }
     
 
