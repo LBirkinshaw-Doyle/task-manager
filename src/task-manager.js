@@ -4,6 +4,9 @@ const taskManager = function () {
 
     let currentTasks = {};
 
+    function getTaskIndex (task) {
+        return task.title + task.description[0] + task.dueDate;
+    }
     function storageAvailable() {
         let storage;
         try {
@@ -78,6 +81,9 @@ const taskManager = function () {
             }
         })
     };
+    function updateTask (oldTask, newTask) {
+
+    }
     
 
     return {
@@ -86,6 +92,7 @@ const taskManager = function () {
         tasksOfProject,
         addNewTask,
         removeTask,
+        updateTask,
     }
 }();
 

@@ -7,7 +7,4 @@ export default class Task {
         this.complete = complete;
         this.project = project;
     };
-    toggleComplete () {
-        this.complete ? this.complete = false : this.complete = true;
-    };
 }
