@@ -1,4 +1,4 @@
-import task from './task.js';
+import taskManager from './task-manager.js';
 
 export function createStatic () {
     const content = document.getElementById("content");
@@ -57,6 +57,8 @@ export function createStatic () {
     addTaskButton.addEventListener('click', addNewTaskForm);
     addProjectButton.addEventListener('click', addNewProjectForm);
 
+    updateTaskList();
+
 }
 
 function addNewTaskForm () {
@@ -68,7 +70,28 @@ function addNewProjectForm () {
 }
 
 function updateTaskList () {
+    const taskList = document.getElementById('task-list');
+    let tasks;
+    let projects = taskManager.allProjects()
+    if (projects.length > 0){
+    projects.forEach(project => {
+        const taskListItem = document.createElement('li');
+        const taskListProject = document.createElement('h3');
+        taskListItem.classList.add = 'task-list-item'
+        taskListProject.textContent = project;
+        taskListProject.classList.add = "project-header"
+        taskListItem.appendChild(taskListProject);
 
+        tasks = taskManager.tasksOfProject(project);
+        for (const task in Object.values(tasks.values)) {
+            const taskInList = document.createElement('span');
+            taskInList.classList.add = 'task';
+            taskInList.textContent = task.title;
+            taskListItem.appendChild(taskInList);
+        }
+        taskList.appendChild(taskListItem);
+        
+    })}
 }
 
 function displayTask () {

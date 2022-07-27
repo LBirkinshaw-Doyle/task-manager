@@ -5,7 +5,7 @@ const taskManager = function () {
     let currentTasks = {};
 
     function getTaskIndex (task) {
-        return task.title + task.description[0] + task.dueDate;
+        return task.title + task.dueDate;
     }
     function storageAvailable() {
         let storage;
@@ -47,14 +47,16 @@ const taskManager = function () {
     };
     function allProjects () {
         let projectList = [];
-        for (const task in currentTasks.values()) {
-            if (!projectList.includes(task.project)) projectList.push(task.project)
+        if (Object.keys(currentTasks).length > 0) {
+            for (const task in Object.values(currentTasks)) {
+                if (!projectList.includes(task.project)) projectList.push(task.project)
+            }
         }
         return projectList;
     };
     function tasksOfProject (project) {
         let projectTasks = {};
-        for (const task in currentTasks.values()) {
+        for (const task in Object.values(currentTasks)) {
             if (task.project === project) {
                 projectTasks[getTaskIndex(task)] = task
             }
