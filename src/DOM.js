@@ -45,22 +45,77 @@ export function createStatic () {
 
     content.append(header, taskListContainer, contentDisplay);
 
-    displaySelector.addEventListener('click', () => {
-        if (taskListContainer.style.display === "block") {
-            taskListContainer.style.display = "none";
-        }
-        else {
-            taskListContainer.style.display = "block";
-        }
-    });
+    displaySelector.addEventListener('click', toggleTaskList);
     addTaskButton.addEventListener('click', addNewTaskForm);
 
     updateTaskList();
+}
 
+function toggleTaskList () {
+    const taskListContainer = document.getElementById('task-list-container');
+    if (taskListContainer.style.display === "block") {
+        taskListContainer.style.display = "none";
+    }
+    else {
+        taskListContainer.style.display = "block";
+    }
 }
 
 function addNewTaskForm () {
+    toggleTaskList();
+    const contentDisplay = document.getElementById('content-display');
+    // Create Form
+    const newTaskForm = document.createElement('form');
+    newTaskForm.name = "addNewTask";
+    newTaskForm.action = "";
+    newTaskForm.classList.add("form-container");
 
+    // Add form info
+    const formInfoContainer = document.createElement('p');
+    formInfoContainer.textContent = "Required fields are followed by ";
+    const requiredAbbreviation = document.createElement('abbr');
+    requiredAbbreviation.title = "Required";
+    requiredAbbreviation.textContent = "*";
+    formInfoContainer.append(requiredAbbreviation);
+
+    // Add form title
+    const titleFormContainer = document.createElement('p');
+    const titleLabel = document.createElement('label');
+    titleLabel.for = "title";
+    titleLabel.textContent = "Title ";
+    titleLabel.appendChild(requiredAbbreviation.cloneNode(true));
+    const titleInput = document.createElement('input');
+    titleInput.id = "title";
+    titleInput.type = "text";
+    titleInput.name = "title";
+    titleFormContainer.append(titleLabel, titleInput);
+
+    // Add form description
+    const descriptionFormContainer = document.createElement('p');
+    const descriptionLabel = document.createElement('label');
+    descriptionLabel.for = "description";
+    descriptionLabel.textContent = "Description ";
+    descriptionLabel.appendChild(requiredAbbreviation.cloneNode(true));
+    const descriptionInput = document.createElement('textarea');
+    descriptionInput.id = "description";
+    descriptionInput.name = "description";
+    descriptionFormContainer.append(descriptionLabel, descriptionInput);
+
+    // Add form due date
+    const dateFormContainer = document.createElement('p');
+    const dateLabel = document.createElement('label');
+    dateLabel.for = "date";
+    dateLabel.textContent = "Date ";
+    dateLabel.appendChild(requiredAbbreviation.cloneNode(true));
+    const dateInput = document.createElement('input');
+    dateInput.id = "date";
+    dateInput.type = "date";
+    dateInput.name = "date";
+    dateFormContainer.append(dateLabel, dateInput);
+
+    // Append all form elements
+    newTaskForm.append(formInfoContainer, titleFormContainer, descriptionFormContainer, dateFormContainer);
+    contentDisplay.append(newTaskForm);
 }
 
 function updateTaskList () {
