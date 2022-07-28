@@ -27,13 +27,9 @@ export function createStatic () {
     addTaskButton.id = 'add-task-button';
     addTaskButton.textContent = 'New Task';
     addTaskButton.classList.add = 'add-button';
-    const addProjectButton = document.createElement('button');
-    addProjectButton.id = 'add-project-button';
-    addProjectButton.textContent = 'New Project';
-    addProjectButton.classList.add = 'add-button';
 
 
-    taskListContainer.append(addTaskButton, addProjectButton, taskListHeader, taskList);
+    taskListContainer.append(addTaskButton, taskListHeader, taskList);
 
     treeImage.id = 'tree-image';
 
@@ -44,7 +40,10 @@ export function createStatic () {
     titleContainer.append(logoImage, title);
     header.append(titleContainer);
 
-    content.append(header, taskListContainer);
+    const contentDisplay = document.createElement('div');
+    contentDisplay.id = "content-display";
+
+    content.append(header, taskListContainer, contentDisplay);
 
     displaySelector.addEventListener('click', () => {
         if (taskListContainer.style.display === "block") {
@@ -55,7 +54,6 @@ export function createStatic () {
         }
     });
     addTaskButton.addEventListener('click', addNewTaskForm);
-    addProjectButton.addEventListener('click', addNewProjectForm);
 
     updateTaskList();
 
@@ -63,10 +61,6 @@ export function createStatic () {
 
 function addNewTaskForm () {
 
-}
-
-function addNewProjectForm () {
-    
 }
 
 function updateTaskList () {
