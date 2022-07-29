@@ -71,6 +71,10 @@ function addNewTaskForm () {
     newTaskForm.classList.add("form-container");
 
     // Add form info
+    const formTitle = document.createElement('h2');
+    formTitle.id = "form-title";
+    formTitle.textContent = "Create New Task";
+
     const formInfoContainer = document.createElement('p');
     formInfoContainer.textContent = "Required fields are followed by ";
     const requiredAbbreviation = document.createElement('abbr');
@@ -113,8 +117,59 @@ function addNewTaskForm () {
     dateInput.name = "date";
     dateFormContainer.append(dateLabel, dateInput);
 
+    // Add form priority
+    const priorityFormContainer = document.createElement('fieldset');
+    const priorityFormLegend = document.createElement('legend');
+    priorityFormLegend.textContent = "Priority:";
+
+    const priortyGroupOne = document.createElement('div')
+    const priorityOneLabel = document.createElement('label');
+    priorityOneLabel.textContent = " High";
+    const priorityOneInput = document.createElement('input');
+    priorityOneInput.id = "priorityOne";
+    priorityOneInput.type = "radio";
+    priorityOneInput.name = "priority";
+    priorityOneInput.value = "1";
+    priorityOneLabel.prepend(priorityOneInput);
+    priortyGroupOne.append(priorityOneLabel);
+
+    const priortyGroupTwo = document.createElement('div')
+    const priorityTwoLabel = document.createElement('label');
+    priorityTwoLabel.textContent = " Medium";
+    const priorityTwoInput = document.createElement('input');
+    priorityTwoInput.id = "priorityTwo";
+    priorityTwoInput.type = "radio";
+    priorityTwoInput.name = "priority";
+    priorityTwoInput.value = "2";
+    priorityTwoLabel.prepend(priorityTwoInput);
+    priortyGroupTwo.append(priorityTwoLabel);
+
+    const priortyGroupThree = document.createElement('div')
+    const priorityThreeLabel = document.createElement('label');
+    priorityThreeLabel.textContent = " Low";
+    const priorityThreeInput = document.createElement('input');
+    priorityThreeInput.id = "priorityThree";
+    priorityThreeInput.type = "radio";
+    priorityThreeInput.name = "priority";
+    priorityThreeInput.value = "2";
+    priorityThreeLabel.prepend(priorityThreeInput);
+    priortyGroupThree.append(priorityThreeLabel);
+
+    priorityFormContainer.append(priorityFormLegend, priortyGroupOne, priortyGroupTwo, priortyGroupThree);
+
+    // Add task project
+    
+
+
     // Append all form elements
-    newTaskForm.append(formInfoContainer, titleFormContainer, descriptionFormContainer, dateFormContainer);
+    newTaskForm.append(
+        formTitle,
+        formInfoContainer,
+        titleFormContainer,
+        descriptionFormContainer,
+        dateFormContainer,
+        priorityFormContainer
+        );
     contentDisplay.append(newTaskForm);
 }
 
