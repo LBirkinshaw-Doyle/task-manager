@@ -158,7 +158,27 @@ function addNewTaskForm () {
     priorityFormContainer.append(priorityFormLegend, priortyGroupOne, priortyGroupTwo, priortyGroupThree);
 
     // Add task project
-    
+    const projectList = taskManager.allProjects()
+    const projectDataList = document.createElement('datalist');
+    projectDataList.id = "projectList";
+    if (projectList.length > 0) {
+        projectList.forEach(project => {
+            const dataListOption = document.createElement('option');
+            dataListOption.value = project;
+            projectDataList.append(dataListOption);
+        })
+    }
+
+    const projectFormContainer = document.createElement('p');
+    const projectLabel = document.createElement('label');
+    projectLabel.for = "project";
+    projectLabel.textContent = "Project ";
+    const projectInput = document.createElement('input');
+    projectInput.id = "project";
+    projectInput.type = 'text';
+    projectInput.setAttribute("list", "projectList");
+    projectInput.name = "project";
+    projectFormContainer.append(projectLabel, projectInput, projectDataList);
 
 
     // Append all form elements
@@ -168,7 +188,8 @@ function addNewTaskForm () {
         titleFormContainer,
         descriptionFormContainer,
         dateFormContainer,
-        priorityFormContainer
+        priorityFormContainer,
+        projectFormContainer
         );
     contentDisplay.append(newTaskForm);
 }
