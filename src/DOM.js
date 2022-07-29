@@ -180,6 +180,12 @@ function addNewTaskForm () {
     projectInput.name = "project";
     projectFormContainer.append(projectLabel, projectInput, projectDataList);
 
+    // Add submit button
+    const formSubmitButton = document.createElement('button');
+    formSubmitButton.id = "submit-form";
+    formSubmitButton.type = "button";
+    formSubmitButton.textContent = "Create";
+    formSubmitButton.onclick = submitForm();
 
     // Append all form elements
     newTaskForm.append(
@@ -189,9 +195,20 @@ function addNewTaskForm () {
         descriptionFormContainer,
         dateFormContainer,
         priorityFormContainer,
-        projectFormContainer
+        projectFormContainer,
+        formSubmitButton
         );
     contentDisplay.append(newTaskForm);
+
+    function submitForm () {
+        let title = titleInput.value;
+        let description = descriptionInput.value;
+        let date = dateInput.value;
+        let priority = priorityFormContainer.value;
+        let project = projectInput.value;
+        taskManager.addNewTask();
+        //clearContentDisplay();
+    }
 }
 
 function updateTaskList () {
