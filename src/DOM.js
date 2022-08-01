@@ -52,12 +52,20 @@ export function createStatic () {
 }
 
 function toggleTaskList () {
+    clearContentDisplay()
     const taskListContainer = document.getElementById('task-list-container');
     if (taskListContainer.style.display === "block") {
         taskListContainer.style.display = "none";
     }
     else {
         taskListContainer.style.display = "block";
+    }
+}
+
+function clearContentDisplay () {
+    let contentDisplay = document.getElementById('content-display');
+    while (contentDisplay.firstChild != null) {
+        contentDisplay.removeChild(contentDisplay.firstChild);
     }
 }
 
@@ -92,6 +100,7 @@ function addNewTaskForm () {
     titleInput.id = "title";
     titleInput.type = "text";
     titleInput.name = "title";
+    titleInput.setAttribute('required', '');
     titleFormContainer.append(titleLabel, titleInput);
 
     // Add form description
@@ -103,6 +112,7 @@ function addNewTaskForm () {
     const descriptionInput = document.createElement('textarea');
     descriptionInput.id = "description";
     descriptionInput.name = "description";
+    descriptionInput.setAttribute('required', '');
     descriptionFormContainer.append(descriptionLabel, descriptionInput);
 
     // Add form due date
@@ -115,6 +125,7 @@ function addNewTaskForm () {
     dateInput.id = "date";
     dateInput.type = "date";
     dateInput.name = "date";
+    dateInput.setAttribute('required', '');
     dateFormContainer.append(dateLabel, dateInput);
 
     // Add form priority
@@ -225,12 +236,12 @@ function updateTaskList () {
         taskListItem.appendChild(taskListProject);
 
         tasks = taskManager.tasksOfProject(project);
-        for (const task in Object.values(tasks.values)) {
+        Object.values(tasks).forEach(task => {
             const taskInList = document.createElement('span');
             taskInList.classList.add = 'task';
             taskInList.textContent = task.title;
             taskListItem.appendChild(taskInList);
-        }
+        })
         taskList.appendChild(taskListItem);
         
     })}

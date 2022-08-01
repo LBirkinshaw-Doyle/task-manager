@@ -48,19 +48,19 @@ const taskManager = function () {
     function allProjects () {
         let projectList = [];
         if (Object.keys(currentTasks).length > 0) {
-            for (const task in Object.values(currentTasks)) {
+            Object.values(currentTasks).forEach(task => {
                 if (!projectList.includes(task.project)) projectList.push(task.project)
-            }
+            })
         }
         return projectList;
     };
     function tasksOfProject (project) {
         let projectTasks = {};
-        for (const task in Object.values(currentTasks)) {
+        Object.values(currentTasks).forEach(task => {
             if (task.project === project) {
                 projectTasks[getTaskIndex(task)] = task
             }
-        }
+        });
         return projectTasks;
     };
     function addNewTask (title, description, dueDate, priority, complete, project) {
