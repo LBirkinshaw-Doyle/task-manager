@@ -52,7 +52,8 @@ export function createStatic () {
 }
 
 function toggleTaskList () {
-    clearContentDisplay()
+    clearContentDisplay();
+    updateTaskList();
     const taskListContainer = document.getElementById('task-list-container');
     if (taskListContainer.style.display === "block") {
         taskListContainer.style.display = "none";
@@ -196,7 +197,7 @@ function addNewTaskForm () {
     formSubmitButton.id = "submit-form";
     formSubmitButton.type = "button";
     formSubmitButton.textContent = "Create";
-    formSubmitButton.onclick = submitForm();
+    formSubmitButton.addEventListener('click', submitForm);
 
     // Append all form elements
     newTaskForm.append(
@@ -210,16 +211,26 @@ function addNewTaskForm () {
         formSubmitButton
         );
     contentDisplay.append(newTaskForm);
+}
 
-    function submitForm () {
-        let title = titleInput.value;
-        let description = descriptionInput.value;
-        let date = dateInput.value;
-        let priority = priorityFormContainer.value;
-        let project = projectInput.value;
-        taskManager.addNewTask();
-        //clearContentDisplay();
+function submitForm () {
+    if (!!document.getElementById('title')) {
+        let title = document.getElementById('title').value;
+        let description = document.getElementById('description').value;
+        let date = document.getElementById('date').value;
+        
+        let priority;
+        document.getElementById('priorityOne').checked ?
+            priority = "1" :
+            document.getElementById('priorityTwo').checked ?
+            priority = "2" :
+            document.getElementById('priorityThree').checked ?
+            priority = "3" :
+            priority = "";
+        let project = document.getElementById('project').value;
+        taskManager.addNewTask(title, description, date, priority, project);
     }
+    clearContentDisplay();
 }
 
 function updateTaskList () {
