@@ -52,7 +52,7 @@ export function createStatic () {
 }
 
 function toggleTaskList () {
-    clearContentDisplay();
+    clearContainer(document.getElementById('content-display'));
     updateTaskList();
     const taskListContainer = document.getElementById('task-list-container');
     if (taskListContainer.style.display === "block") {
@@ -63,10 +63,9 @@ function toggleTaskList () {
     }
 }
 
-function clearContentDisplay () {
-    let contentDisplay = document.getElementById('content-display');
-    while (contentDisplay.firstChild != null) {
-        contentDisplay.removeChild(contentDisplay.firstChild);
+function clearContainer (container) {
+    while (container.firstChild != null) {
+        container.removeChild(container.firstChild);
     }
 }
 
@@ -228,13 +227,14 @@ function submitForm () {
             priority = "3" :
             priority = "";
         let project = document.getElementById('project').value;
-        taskManager.addNewTask(title, description, date, priority, project);
+        taskManager.addNewTask(title, description, date, priority, false, project);
     }
-    clearContentDisplay();
+    clearContainer(document.getElementById('content-display'));
 }
 
 function updateTaskList () {
     const taskList = document.getElementById('task-list');
+    clearContainer(taskList);
     let tasks;
     let projects = taskManager.allProjects()
     if (projects.length > 0){
@@ -248,7 +248,7 @@ function updateTaskList () {
 
         tasks = taskManager.tasksOfProject(project);
         Object.values(tasks).forEach(task => {
-            const taskInList = document.createElement('span');
+            const taskInList = document.createElement('p');
             taskInList.classList.add = 'task';
             taskInList.textContent = task.title;
             taskListItem.appendChild(taskInList);
