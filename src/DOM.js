@@ -213,11 +213,16 @@ function addNewTaskForm () {
 }
 
 function submitForm () {
-    if (!!document.getElementById('title')) {
+    //check to see if title, description and date are filled, then submit form, otherwise do nothing
+    if (document.getElementById('title').value &&
+        document.getElementById('description').value &&
+        document.getElementById('date').value) 
+        {
         let title = document.getElementById('title').value;
         let description = document.getElementById('description').value;
         let date = document.getElementById('date').value;
         
+
         let priority;
         document.getElementById('priorityOne').checked ?
             priority = "1" :
@@ -225,11 +230,15 @@ function submitForm () {
             priority = "2" :
             document.getElementById('priorityThree').checked ?
             priority = "3" :
-            priority = "";
-        let project = document.getElementById('project').value;
+            priority = "1";
+        let project;
+        if (document.getElementById('project').value) {project = document.getElementById('project').value;}
+        else {project = "-"}
+        
+
         taskManager.addNewTask(title, description, date, priority, false, project);
+        clearContainer(document.getElementById('content-display'));
     }
-    clearContainer(document.getElementById('content-display'));
 }
 
 function updateTaskList () {
