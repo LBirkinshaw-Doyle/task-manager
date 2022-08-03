@@ -259,7 +259,7 @@ function updateTaskList () {
             const taskInList = document.createElement('p');
             taskInList.classList.add = 'task';
             taskInList.textContent = task.title;
-            taskInList.setAttribute("taskData", JSON.stringify(task));
+            taskInList.setAttribute("taskdata", JSON.stringify(task));
             taskInList.addEventListener('click', displayTask)
             taskListItem.appendChild(taskInList);
         })
@@ -269,7 +269,7 @@ function updateTaskList () {
 }
 
 function displayTask (event) {
-    let task = JSON.parse(event.currentTarget.taskData);
+    let task = JSON.parse(event.currentTarget.getAttribute('taskdata'));
     //create container
     let container = document.createElement('div');
     container.id = "task-container"
@@ -278,10 +278,10 @@ function displayTask (event) {
     headerBlock.id = "task-header";
 
     let titleDisplay = document.createElement('h2');
-    titleDisplay.value = task.title;
+    titleDisplay.textContent = task.title;
 
     let projectDisplay = document.createElement('span');
-    projectDisplay.value = task.project;
+    projectDisplay.textContent = task.project;
 
     let deleteButton = document.createElement('button');
     let editButton = document.createElement('button');
@@ -291,11 +291,11 @@ function displayTask (event) {
     bodyBlock.id = "task-body";
 
     let dateDisplay = document.createElement('p');
-    dateDisplay.value = "Due: " + task.dueDate;
+    dateDisplay.textContent = "Due: " + task.dueDate;
 
     let priorityDisplay = document.createElement('p');
     let priorityValueStr = task.priority === "1" ? "High" : task.priority === "2" ? "Medium": "Low"
-    priorityDisplay.value = "Priority: " + priorityValueStr;
+    priorityDisplay.textContent = "Priority: " + priorityValueStr;
 
     let completeToggle = document.createElement('input');
     completeToggle.type = "checkbox";
@@ -323,6 +323,12 @@ function displayTask (event) {
     contentDisplay.appendChild(container);
 }
 
-function displayProject () {
+function deleteTask () {
+
+}
+function editTask () {
+
+}
+function toggleTaskComplete () {
 
 }
