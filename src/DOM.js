@@ -274,11 +274,24 @@ function displayTask (event) {
     let container = document.createElement('div');
     container.id = "task-container"
     //create header block containing title, project, delete, edit
+    let headerBlock = document.createElement('div');
+    headerBlock.id = "task-header";
+
+    let titleDisplay = document.createElement('h2');
+    titleDisplay.value = task.title;
+
+    let projectDisplay = document.createElement('span');
+    projectDisplay.value = task.project;
+
+    let deleteButton = document.createElement('button');
+    let editButton = document.createElement('button');
+    headerBlock.append(titleDisplay, deleteButton, projectDisplay, editButton);
     //create main body containing due date, priority, complete toggle, 
     //add event listener to delete
     //add event listener to edit
     //add event listener to complete toggle
     //append header block, main body to container
+    //append container to main content including clearing view
 }
 
 function displayProject () {
