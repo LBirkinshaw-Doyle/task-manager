@@ -259,7 +259,7 @@ function updateTaskList () {
             const taskInList = document.createElement('p');
             taskInList.classList.add = 'task';
             taskInList.textContent = task.title;
-            taskInList.setAttribute("Task-Data", task);
+            taskInList.setAttribute("taskData", JSON.stringify(task));
             taskInList.addEventListener('click', displayTask)
             taskListItem.appendChild(taskInList);
         })
@@ -269,7 +269,7 @@ function updateTaskList () {
 }
 
 function displayTask (event) {
-    let task = event.currentTarget.Task-Data;
+    let task = JSON.parse(event.currentTarget.taskData);
     //create container
     let container = document.createElement('div');
     container.id = "task-container"
@@ -306,10 +306,21 @@ function displayTask (event) {
 
     bodyBlock.append(dateDisplay, priorityDisplay, completeLabel, completeToggle);
     //add event listener to delete
+    deleteButton.setAttribute("taskData", JSON.stringify(task));
+    deleteButton.addEventListener('click', deleteTask);
     //add event listener to edit
+    editButton.setAttribute("taskData", JSON.stringify(task));
+    editButton.addEventListener('click', editTask);
     //add event listener to complete toggle
+    completeToggle.setAttribute("taskData", JSON.stringify(task));
+    completeToggle.addEventListener('click', toggleTaskComplete);
     //append header block, main body to container
+    container.append(headerBlock, bodyBlock);
     //append container to main content including clearing view
+    toggleTaskList();
+    const contentDisplay = document.getElementById('content-display');
+    clearContainer(contentDisplay);
+    contentDisplay.appendChild(container);
 }
 
 function displayProject () {
