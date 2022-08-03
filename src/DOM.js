@@ -286,7 +286,25 @@ function displayTask (event) {
     let deleteButton = document.createElement('button');
     let editButton = document.createElement('button');
     headerBlock.append(titleDisplay, deleteButton, projectDisplay, editButton);
-    //create main body containing due date, priority, complete toggle, 
+    //create main body containing due date, priority, complete toggle
+    let bodyBlock = document.createElement('div');
+    bodyBlock.id = "task-body";
+
+    let dateDisplay = document.createElement('p');
+    dateDisplay.value = "Due: " + task.dueDate;
+
+    let priorityDisplay = document.createElement('p');
+    let priorityValueStr = task.priority === "1" ? "High" : task.priority === "2" ? "Medium": "Low"
+    priorityDisplay.value = "Priority: " + priorityValueStr;
+
+    let completeToggle = document.createElement('input');
+    completeToggle.type = "checkbox";
+    completeToggle.id = "complete-toggle";
+    let completeLabel = document.createElement('label');
+    completeLabel.for = "complete-toggle";
+    completeLabel.textContent = "Complete: ";
+
+    bodyBlock.append(dateDisplay, priorityDisplay, completeLabel, completeToggle);
     //add event listener to delete
     //add event listener to edit
     //add event listener to complete toggle
