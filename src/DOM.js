@@ -271,6 +271,8 @@ function updateTaskList () {
 function displayTask (event) {
     let task = event.currentTarget.Task-Data;
     //create container
+    let container = document.createElement('div');
+    container.id = "task-container"
     //create header block containing title, project, delete, edit
     //create main body containing due date, priority, complete toggle, 
     //add event listener to delete
