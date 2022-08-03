@@ -222,7 +222,6 @@ function submitForm () {
         let description = document.getElementById('description').value;
         let date = document.getElementById('date').value;
         
-
         let priority;
         document.getElementById('priorityOne').checked ?
             priority = "1" :
@@ -260,6 +259,8 @@ function updateTaskList () {
             const taskInList = document.createElement('p');
             taskInList.classList.add = 'task';
             taskInList.textContent = task.title;
+            taskInList.setAttribute("Task-Data", task);
+            taskInList.addEventListener('click', displayTask)
             taskListItem.appendChild(taskInList);
         })
         taskList.appendChild(taskListItem);
@@ -267,8 +268,15 @@ function updateTaskList () {
     })}
 }
 
-function displayTask () {
-
+function displayTask (event) {
+    let task = event.currentTarget.Task-Data;
+    //create container
+    //create header block containing title, project, delete, edit
+    //create main body containing due date, priority, complete toggle, 
+    //add event listener to delete
+    //add event listener to edit
+    //add event listener to complete toggle
+    //append header block, main body to container
 }
 
 function displayProject () {
