@@ -237,6 +237,7 @@ function submitForm () {
 
         taskManager.addNewTask(title, description, date, priority, false, project);
         clearContainer(document.getElementById('content-display'));
+        toggleTaskList();
     }
 }
 
@@ -334,6 +335,35 @@ function deleteTask (event) {
     toggleTaskList();
 }
 function editTask () {
+    toggleTaskList();
+    //get the task
+    let task = JSON.parse(event.currentTarget.getAttribute('taskdata'));
+    //delete the task from the data store
+    taskManager.removeTask(task);
+    //clear the window
+    clearContainer(document.getElementById('content-display'));
+    //create new task form
+    addNewTaskForm()
+    //fill in values with task info
+    document.getElementById('title').value = task.title;
+    document.getElementById('description').value = task.description;
+    document.getElementById('date').value = task.dueDate;
+    switch (task.priority) {
+        case "1":
+            document.getElementById('priorityOne').setAttribute('checked', "");
+            break;
+        case "2":
+            document.getElementById('priorityTwo').setAttribute('checked', "");
+            break;
+        case "3":
+            document.getElementById('priorityThree').setAttribute('checked', "");
+            break;
+    };
+    document.getElementById('project').value = task.project;
+    //add warning about quitting without submitting
+    const warning = document.createElement('p');
+    warning.textContent = "WARNING: Leaving before submitting task will result in task being deleted."
+    document.getElementById('content-display').prepend(warning);
 
 }
 function toggleTaskComplete () {
