@@ -323,8 +323,15 @@ function displayTask (event) {
     contentDisplay.appendChild(container);
 }
 
-function deleteTask () {
-
+function deleteTask (event) {
+    //get the task
+    let task = JSON.parse(event.currentTarget.getAttribute('taskdata'));
+    //delete the task from the data store
+    taskManager.removeTask(task);
+    //clear the window
+    clearContainer(document.getElementById('content-display'));
+    //open the task list
+    toggleTaskList();
 }
 function editTask () {
 
