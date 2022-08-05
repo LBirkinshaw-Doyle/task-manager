@@ -301,6 +301,7 @@ function displayTask (event) {
     let completeToggle = document.createElement('input');
     completeToggle.type = "checkbox";
     completeToggle.id = "complete-toggle";
+    task.complete ? completeToggle.checked = true : completeToggle.checked = false;
     let completeLabel = document.createElement('label');
     completeLabel.for = "complete-toggle";
     completeLabel.textContent = "Complete: ";
@@ -334,7 +335,7 @@ function deleteTask (event) {
     //open the task list
     toggleTaskList();
 }
-function editTask () {
+function editTask (event) {
     toggleTaskList();
     //get the task
     let task = JSON.parse(event.currentTarget.getAttribute('taskdata'));
@@ -364,8 +365,14 @@ function editTask () {
     const warning = document.createElement('p');
     warning.textContent = "WARNING: Leaving before submitting task will result in task being deleted."
     document.getElementById('content-display').prepend(warning);
-
 }
-function toggleTaskComplete () {
-
+function toggleTaskComplete (event) {
+    //get task data
+    const task = JSON.parse(event.currentTarget.getAttribute('taskdata'));
+    //check if the complete button is checked
+    const oldTask = task;
+    const newTask = task;
+    event.currentTarget.checked ? newTask.complete = true : newTask.complete = false;
+    newTask.checked ? document.getElementById('task-container').classList.add('complete'): document.getElementById('task-container').classList.remove('complete');
+    taskManager.updateTask(oldTask, newTask);
 }
