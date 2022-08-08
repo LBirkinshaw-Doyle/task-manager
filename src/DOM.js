@@ -15,12 +15,9 @@ export function createStatic () {
     const displaySelector = document.createElement('button');
     const treeImage = document.createElement('span');
     const taskListContainer = document.createElement('div');
-    const taskListHeader = document.createElement('h3');
     const taskList = document.createElement('ul');
 
     taskListContainer.id = 'task-list-container';
-    taskListHeader.id = 'task-list-header';
-    taskListHeader.textContent = 'Tasks:';
     taskList.id = "task-list";
 
     const addTaskButton = document.createElement('button');
@@ -29,7 +26,7 @@ export function createStatic () {
     addTaskButton.classList.add = 'add-button';
 
 
-    taskListContainer.append(addTaskButton, taskListHeader, taskList);
+    taskListContainer.append(addTaskButton, taskList);
 
     treeImage.id = 'tree-image';
 
@@ -55,11 +52,11 @@ function toggleTaskList () {
     clearContainer(document.getElementById('content-display'));
     updateTaskList();
     const taskListContainer = document.getElementById('task-list-container');
-    if (taskListContainer.style.display === "block") {
+    if (taskListContainer.style.display === "flex") {
         taskListContainer.style.display = "none";
     }
     else {
-        taskListContainer.style.display = "block";
+        taskListContainer.style.display = "flex";
     }
 }
 
