@@ -1,83 +1,90 @@
-body{
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    background-color: rgb(240, 220, 250);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background-color: rgb(240, 220, 250);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-header{
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 0.1rem 0.1rem;
+header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0.1rem 0.1rem;
 }
-nav{
-    flex: 1 1 10vw;
-    margin: 2px;
+nav {
+  flex: 1 1 10vw;
+  margin: 2px;
 }
-nav>button{
-    background-color: rgb(205, 100, 250);
-    border-radius: 15px;
-    border: none;
-    box-shadow: 0.1rem 0.1rem 0.1rem, inset -0.1rem -0.1rem 0.1rem rgba(0, 0, 0, 0.5), inset 0.1rem 0.1rem 0.1rem rgba(255, 255, 255, 0.5);
+nav > button {
+  background-color: rgb(205, 100, 250);
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0.1rem 0.1rem 0.1rem,
+    inset -0.1rem -0.1rem 0.1rem rgba(0, 0, 0, 0.5),
+    inset 0.1rem 0.1rem 0.1rem rgba(255, 255, 255, 0.5);
 }
-nav>button:active{
-    box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.5), inset -0.1rem -0.1rem 0.1rem rgba(255, 255, 255, 0.5);
+nav > button:active {
+  box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.5),
+    inset -0.1rem -0.1rem 0.1rem rgba(255, 255, 255, 0.5);
 }
-#title-container{
-    flex: 3 3 70vw;
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    margin-right: 20px;
+#title-container {
+  flex: 3 3 70vw;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  margin-right: 20px;
 }
-#title-container>h1{
-    margin: 0;
+#title-container > h1 {
+  margin: 0;
 }
-@keyframes top-slide{
-    from {
-        transform: translateY(-200px);
-    }
-    to {
-        transform: translateY(0px);
-    }
+@keyframes top-slide {
+  from {
+    transform: translateY(-200px);
+  }
+  to {
+    transform: translateY(0px);
+  }
 }
-#task-list-container{
-    position: relative;
-    z-index: 0;
-    animation-duration: 0.5s;
-    animation-name: top-slide;
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    margin: 0 10px 10px 10px;
-    background-color: rgba(0, 0, 0, 0.1);
-    box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.05);
+#task-list-container {
+  position: relative;
+  z-index: 0;
+  animation-duration: 0.5s;
+  animation-name: top-slide;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 10px 10px 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.05);
 }
-#add-task-button{
-    background-color: rgb(205, 100, 250);
-    border-radius: 15px;
-    border: none;
-    margin: 10px;
-    box-shadow: 0.1rem 0.1rem 0.1rem, inset -0.1rem -0.1rem 0.1rem rgba(0, 0, 0, 0.5), inset 0.1rem 0.1rem 0.1rem rgba(255, 255, 255, 0.5);
+#add-task-button {
+  background-color: rgb(205, 100, 250);
+  border-radius: 15px;
+  border: none;
+  margin: 10px;
+  box-shadow: 0.1rem 0.1rem 0.1rem,
+    inset -0.1rem -0.1rem 0.1rem rgba(0, 0, 0, 0.5),
+    inset 0.1rem 0.1rem 0.1rem rgba(255, 255, 255, 0.5);
 }
-#add-task-button:active{
-    box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.5), inset -0.1rem -0.1rem 0.1rem rgba(255, 255, 255, 0.5);
+#add-task-button:active {
+  box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.5),
+    inset -0.1rem -0.1rem 0.1rem rgba(255, 255, 255, 0.5);
 }
-#task-list{
-    margin: 0;
-    padding: 0;
+#task-list {
+  margin: 0;
+  padding: 0;
 }
-#task-list>li::marker{
-    content: "";
+#task-list > li::marker {
+  content: "";
 }
-#tree-image{
-    display: block;
-    background-image: url("./media/icons/checklist.svg");
-    min-width: 48px;
-    min-height: 48px;
+#tree-image {
+  display: block;
+  background-image: url("./media/icons/checklist.svg");
+  min-width: 48px;
+  min-height: 48px;
 }
