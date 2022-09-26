@@ -288,7 +288,9 @@ function displayTask(event) {
   projectDisplay.textContent = task.project;
 
   const deleteButton = document.createElement("button");
+  deleteButton.textContent = "delete";
   const editButton = document.createElement("button");
+  editButton.textContent = "edit";
   headerBlock.append(titleDisplay, deleteButton, projectDisplay, editButton);
   // create main body containing due date, priority, complete toggle
   const bodyBlock = document.createElement("div");
